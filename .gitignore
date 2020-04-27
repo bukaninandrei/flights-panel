@@ -21,3 +21,6 @@
 /config/master.key
 
 /vendor
+/bundle
+
+.idea

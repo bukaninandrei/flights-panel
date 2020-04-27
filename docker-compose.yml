@@ -7,7 +7,8 @@ web:
     - redis:redis
   volumes:
     - .:/app
-  command: /bin/bash -c "bundle install --local && bundle exec puma"
+    - bundle:/usr/local/bundle
+  command: /bin/bash -c "bundle install && bundle exec puma"
 db:
   restart: always
   image: postgres:12
