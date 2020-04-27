@@ -1,0 +1,24 @@
+web:
+  build: .
+  ports:
+    - '3000:3000'
+  links:
+    - db:db
+    - redis:redis
+  volumes:
+    - .:/app
+  command: /bin/bash -c "bundle install --local && bundle exec puma"
+db:
+  restart: always
+  image: postgres:12
+  ports:
+    - '5433:5432'
+  volumes:
+    - .:/app
+  environment:
+    POSTGRES_USER: app_user
+    POSTGRES_PASSWORD: app_password
+redis:
+  image: redis:5
+  ports:
+    - 6379:6379
