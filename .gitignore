@@ -22,5 +22,6 @@
 
 /vendor
 /bundle
+/coverage
 
 .idea

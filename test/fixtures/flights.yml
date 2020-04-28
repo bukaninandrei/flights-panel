@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+in_garage:
+  id: 1
+  title: flight-1
+  state: in_garage
+
+waiting:
+  id: 2
+  title: flight-2
+  state: waiting_flight
+
+on_air:
+  id: 3
+  title: flight-3
+  state: on_air
