@@ -52,4 +52,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_cable.url = "ws://localhost:3000/cable"
+
+  config.active_job.queue_adapter = :sidekiq
 end

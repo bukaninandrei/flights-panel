@@ -5,7 +5,7 @@
     <br/>
   </div>
   <div class="col-md-12">
-    <table class="table table-striped">
+    <table class="table table-striped" id="flights-table">
       <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -16,11 +16,21 @@
       </thead>
       <tbody>
       <% @flights.each do |flight| %>
-      <tr>
-        <th scope="row"><%= flight.id %></th>
-        <td><%= flight.title %></td>
-        <td><%= flight.aasm.human_state %></td>
-        <td><button class="btn btn-info"><%= I18n.t('flights.action/launch') %></button> </td>
+      <tr data-flight="<%= flight.id %>">
+        <th scope="row">
+          <%= flight.id %>
+        </th>
+        <td>
+          <%= flight.title %>
+        </td>
+        <td class="js-state">
+          <%= flight.aasm.human_state %>
+        </td>
+        <td>
+          <button class="btn btn-info js-action" <%= disabled_by_flight?(flight) %>>
+            <%= I18n.t('flights.action/launch') %>
+          </button>
+        </td>
       </tr>
       <% end %>
       </tbody>

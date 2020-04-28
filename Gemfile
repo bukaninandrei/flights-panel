@@ -18,6 +18,8 @@ gem 'mini_racer', platforms: :ruby
 gem 'aasm'
 gem 'pagy'
 gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
+gem 'sidekiq'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

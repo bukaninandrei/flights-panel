@@ -9,7 +9,9 @@ module FlightStateMachine
       state :waiting_flight, :on_air
 
       event :prepare_to_flight do
-        transitions from: :in_garage, to: :waiting_flight, success: :put_in_queue
+        transitions from: :in_garage,
+                    to: :waiting_flight,
+                    success: :put_in_queue
       end
 
       event :fly do
@@ -20,6 +22,7 @@ module FlightStateMachine
     private
 
     def put_in_queue
+      NotifierService.notify_dispatchers(self)
       DoFlightJob.perform_later(self.id)
     end
   end
