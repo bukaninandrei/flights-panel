@@ -1,0 +1,4 @@
+check_if_waiting_to_fly:
+  every: '3s'
+  class: DoFlightWorker
+  queue: default

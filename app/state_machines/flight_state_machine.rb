@@ -23,7 +23,6 @@ module FlightStateMachine
 
     def put_in_queue
       NotifierService.notify_dispatchers(self)
-      DoFlightJob.perform_later(self.id)
     end
   end
 end
