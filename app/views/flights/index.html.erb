@@ -1,3 +1,32 @@
-<h1>Flights#index</h1>
-<p>Find me in app/views/flights/index.html.erb</p>
-<%== pagy_bootstrap_nav_js(@pager) %>
+<div class="row">
+  <div class="col-md-12">
+    <br/>
+    <h1><%= I18n.t('flights.title') %></h1>
+    <br/>
+  </div>
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"><%= han(Flight, :title) %></th>
+        <th scope="col"><%= han(Flight, :state) %></th>
+        <th scope="col"><%= I18n.t('flights.action') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @flights.each do |flight| %>
+      <tr>
+        <th scope="row"><%= flight.id %></th>
+        <td><%= flight.title %></td>
+        <td><%= flight.aasm.human_state %></td>
+        <td><button class="btn btn-info"><%= I18n.t('flights.action/launch') %></button> </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br/>
+    <%== pagy_bootstrap_nav_js(@pager) %>
+  </div>
+</div>

@@ -2,7 +2,7 @@ class FlightsController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pager, @records = pagy(Flight.all)
+    @pager, @flights = pagy(Flight.order(:id).all)
   end
 
   def update
