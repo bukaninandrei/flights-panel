@@ -1,24 +1,34 @@
 # README
+## Для работы необходим docker/docker-compose и свободный 3000-й порт
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Краткое описание
 
-Things you may want to cover:
+Проект с использованием Rails 5.2. Состоит из планировщика и веб-приложения с двумя точками входа:
+- для диспетчера `http://localhost`
+- веб-сокет ActionCable `/cable`
 
-* Ruby version
+Аутентификация/авторизация не предусмотрена
 
-* System dependencies
+На главной странице выведен список рейсов, который был заполнен посредством вызова `db:seed`. Если вызвать `db:seed`
+повторно, таблица с вылетами очистится и заполнится новыми значениями, при этом все состояния будут сброшены.
 
-* Configuration
 
-* Database creation
+## Первый запуск
+`cd project_dir && docker-compose build && docker-compose run --rm web bash -c "bundle && bundle exec rails db:create db:migrate db:seed"`
 
-* Database initialization
 
-* How to run the test suite
+## Последующие запуски:
 
-* Services (job queues, cache servers, search engines, etc.)
+* поднять веб-сервер
+`cd project_dir && docker-compose up -d`
 
-* Deployment instructions
+* поднять Sidekiq
+`cd project_dir && docker-compose run --rm web bash -c "bundle exec sidekiq"`
 
-* ...
+
+## Запуск тестов
+`docker-compose run --rm web bash -c "bundle exec rails t"`
+
+
+## Запуск rubocop
+`docker-compose run --rm web bash -c "bundle exec rubocop"`
