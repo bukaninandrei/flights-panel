@@ -6,7 +6,7 @@ ru:
         state: Состояние
         state/in_garage: В ангаре
         state/waiting_flight: Ожидает взлета
-        state/on_air: Улетел
+        state/on_air: Вылетел
   flights:
     title: Список рейсов
     action: Действие

@@ -17,10 +17,14 @@ class DoFlightWorker
 
   def launch_flee(flight)
     Rails.logger.info("Preparing: #{flight.title} to fly")
-    sleep 10
-    flight.fly!
-    Rails.logger.info("On air: #{flight.title}")
 
-    NotifierService.notify_dispatchers(flight)
+    run_flight_run(flight)
+
+    Rails.logger.info("On air: #{flight.title}")
+  end
+
+  def run_flight_run(flight)
+    sleep configus.flight_time
+    flight.fly!
   end
 end
