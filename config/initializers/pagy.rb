@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
 require 'pagy/extras/bootstrap'
