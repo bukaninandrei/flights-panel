@@ -1,40 +1,19 @@
 <div class="row">
   <div class="col-md-12">
     <br/>
-    <h1><%= I18n.t('flights.title') %></h1>
+    <h1>
+      <%= I18n.t('flights.title') %>
+      <span class="badge badge-secondary badge-success js-badge-status js-badge-online" style="display: none">on-line</span>
+      <span class="badge badge-secondary badge-danger js-badge-status js-badge-offline" title="Веб-сокет недоступен?">off-line</span>
+    </h1>
     <br/>
+    <button class="btn btn-info js-action pull-right">
+      <%= I18n.t('flights.action/launch') %>
+    </button>
   </div>
+
   <div class="col-md-12">
-    <table class="table table-striped" id="flights-table">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col"><%= han(Flight, :title) %></th>
-        <th scope="col"><%= han(Flight, :state) %></th>
-        <th scope="col"><%= I18n.t('flights.action') %></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @flights.each do |flight| %>
-      <tr data-flight="<%= flight.id %>">
-        <th scope="row">
-          <%= flight.id %>
-        </th>
-        <td>
-          <%= flight.title %>
-        </td>
-        <td class="js-state">
-          <%= flight.aasm.human_state %>
-        </td>
-        <td>
-          <button class="btn btn-info js-action" <%= disabled_by_flight?(flight) %>>
-            <%= I18n.t('flights.action/launch') %>
-          </button>
-        </td>
-      </tr>
-      <% end %>
-      </tbody>
-    </table>
+    <%= render partial: 'list', locals: { flights: @flights } %>
 
     <br/>
     <%== pagy_bootstrap_nav_js(@pager) %>

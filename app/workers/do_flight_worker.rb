@@ -6,13 +6,10 @@ class DoFlightWorker
   sidekiq_options unique_across_workers: true, queue: 'default'
 
   def perform
-    flight_groups = Flight.where(state: :waiting_flight)
-                          .order(:updated_at)
-                          .find_in_batches(batch_size: 10)
+    flights = Flight.where(state: :waiting_flight)
+                    .order(:updated_at)
 
-    flight_groups.each do |flight_group|
-      flight_group.each { |flight| launch_flee(flight) }
-    end
+    flights.each { |flight| launch_flee(flight) }
   end
 
   private

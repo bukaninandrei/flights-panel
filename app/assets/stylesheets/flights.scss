@@ -2,3 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
+
+.badge {
+  font-size: 12pt;
+}
+
+.js-action {
+  position: absolute;
+  right: 8px;
+  top: 24px;
+}

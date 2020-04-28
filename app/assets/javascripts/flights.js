@@ -3,28 +3,35 @@
 
 //= require pagy
 
-window.addEventListener("turbolinks:load", Pagy.init);
-
 window.addEventListener('load', initDispatcherUI);
 
 function initDispatcherUI()
 {
-  $('#flights-table .js-action').on('click', function(e){
+  Pagy.init();
+
+  $('.js-action').on('click', function(e){
     console.log('clicked');
 
     e.preventDefault();
-    var row = e.target.closest('tr'),
-        flight_id = $(row).data('flight');
+    var ids = [],
+        inputs = $('input.js-flight-id:checked:visible');
+
+    inputs.each(function() {
+      var input = $(this);
+      ids.push(input.val());
+
+      input.hide();
+    });
 
     $.ajax({
       method: 'patch',
       url: '/flights',
       data: {
-        id: flight_id,
+        ids: ids,
         authenticity_token: $('meta[name="csrf-token"]').attr("content")
       },
-      success: function(result) {
-        console.log('result is', result);
+      success: function() {
+        console.log('ok');
       }
     })
   });

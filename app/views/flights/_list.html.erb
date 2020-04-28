@@ -1,0 +1,32 @@
+<table class="table table-striped" id="flights-table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col"><%= han(Flight, :title) %></th>
+    <th scope="col"><%= han(Flight, :state) %></th>
+    <th scope="col"><%= I18n.t('flights.selection') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% flights.each do |flight| %>
+    <tr data-flight="<%= flight.id %>">
+      <th scope="row">
+        <%= flight.id %>
+      </th>
+      <td>
+        <%= flight.title %>
+      </td>
+      <td class="js-state">
+        <%= flight.aasm.human_state %>
+      </td>
+      <td>
+        <% if flight.in_garage? %>
+        <div class="form-check">
+          <input class="form-check-input js-flight-id" type="checkbox" value="<%= flight.id %>" />
+        </div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -9,5 +9,5 @@ ru:
         state/on_air: Вылетел
   flights:
     title: Список рейсов
-    action: Действие
+    selection: Выбор
     action/launch: Запуск

@@ -8,8 +8,7 @@ class FlightsController < ApplicationController
   end
 
   def update
-    flight = Flight.find(flight_params[:id])
-    flight.prepare_to_flight!
+    FlightService.launch_all(flight_params[:ids])
 
     head :ok
   end
@@ -18,7 +17,7 @@ class FlightsController < ApplicationController
 
   def flight_params
     {
-      id: params.require(:id).to_i
+      ids: params.require(:ids).map(&:to_i)
     }
   end
 end

@@ -11,7 +11,7 @@ class FlightsControllerTest < ActionDispatch::IntegrationTest
   test 'should get update' do
     flight = flights(:in_garage)
 
-    patch flights_path(params: { id: flight.id })
+    patch flights_path(params: { ids: [flight.id] })
     assert_response :success
   end
 end
