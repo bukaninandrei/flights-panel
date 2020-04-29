@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   root 'flights#index'
-  resource :flights, only: %i[update]
+  get '/flights/:id', to: 'flights#show'
+  patch '/flights', to: 'flights#update'
 end

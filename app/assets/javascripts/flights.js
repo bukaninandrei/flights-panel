@@ -4,6 +4,7 @@
 //= require pagy
 
 window.addEventListener('load', initDispatcherUI);
+$("#viewModal").modal();
 
 function initDispatcherUI()
 {
@@ -32,6 +33,17 @@ function initDispatcherUI()
       },
       success: function() {
         console.log('ok');
+      }
+    })
+  });
+
+  $('.js-open-view').on('click', function(e){
+    $.get({
+      url: '/flights/' + $(e.target).data('id'),
+      dataType: 'html',
+      success: function(html) {
+        $('#viewModal .modal-content').html(html);
+        $("#viewModal").modal({ show: true });
       }
     })
   });

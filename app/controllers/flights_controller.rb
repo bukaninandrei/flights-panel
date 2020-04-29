@@ -13,6 +13,11 @@ class FlightsController < ApplicationController
     head :ok
   end
 
+  def show
+    @flight = Flight.find(params[:id])
+    render layout: false
+  end
+
   private
 
   def flight_params
