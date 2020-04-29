@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+Flight::Event.delete_all
 Flight.delete_all
 
 %w[Jet Boeing An Tu].each do |flight_model|

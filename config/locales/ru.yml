@@ -11,3 +11,9 @@ ru:
     title: Список рейсов
     selection: Выбор
     action/launch: Запуск
+  flight_events:
+    title: "Рейс %{number}"
+    close: Закрыть
+  time:
+    formats:
+      default: '%F %T'

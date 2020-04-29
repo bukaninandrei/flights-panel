@@ -1,0 +1,8 @@
+flight_waiting:
+  flight_id: 3
+  type: waiting_flight
+
+flight_on_air:
+  flight_id: 3
+  type: on_air
+

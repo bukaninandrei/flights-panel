@@ -7,14 +7,14 @@ class FlightsController < ApplicationController
     @pager, @flights = pagy(Flight.order(:id).all)
   end
 
-  def update
+  def perform_event
     FlightService.launch_all(flight_params[:ids])
 
     head :ok
   end
 
   def show
-    @flight = Flight.find(params[:id])
+    @flight = Flight.includes(:events).find(params[:id])
     render layout: false
   end
 

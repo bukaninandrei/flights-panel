@@ -10,12 +10,20 @@ function initDispatcherUI()
 {
   Pagy.init();
 
-  $('.js-action').on('click', function(e){
-    console.log('clicked');
+  var errorFallback = function(){
+    alert('Что-то пошло не так. См. консоль (F12)');
+  };
 
+  $('.js-action').on('click', function(e){
     e.preventDefault();
     var ids = [],
         inputs = $('input.js-flight-id:checked:visible');
+
+    if(inputs.length === 0)
+    {
+      alert('Необходимо выбрать хотя бы один рейс');
+      return;
+    }
 
     inputs.each(function() {
       var input = $(this);
@@ -26,14 +34,15 @@ function initDispatcherUI()
 
     $.ajax({
       method: 'patch',
-      url: '/flights',
+      url: '/flights/perform_event',
       data: {
         ids: ids,
         authenticity_token: $('meta[name="csrf-token"]').attr("content")
       },
       success: function() {
         console.log('ok');
-      }
+      },
+      error: errorFallback
     })
   });
 
@@ -44,7 +53,8 @@ function initDispatcherUI()
       success: function(html) {
         $('#viewModal .modal-content').html(html);
         $("#viewModal").modal({ show: true });
-      }
+      },
+      error: errorFallback
     })
   });
 }

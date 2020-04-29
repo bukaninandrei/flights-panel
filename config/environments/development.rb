@@ -56,4 +56,7 @@ Rails.application.configure do
   config.action_cable.url = 'ws://localhost:3000/cable'
 
   config.active_job.queue_adapter = :sidekiq
+
+  config.time_zone = 'Samara'
+  config.active_record.default_timezone = :local
 end

@@ -27,7 +27,7 @@
 
 
 ## Запуск тестов
-`docker-compose run --rm web bash -c "bundle exec rails t"`
+`docker-compose run --rm web bash -c "COVERAGE=Y bundle exec rails t"`
 
 
 ## Запуск rubocop

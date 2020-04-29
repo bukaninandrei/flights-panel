@@ -13,19 +13,21 @@ module FlightStateMachine
       event :prepare_to_flight do
         transitions from: :in_garage,
                     to: :waiting_flight,
-                    success: :notify_current_status
+                    success: :notify_current_status_and_store_event
       end
 
       event :fly do
         transitions from: :waiting_flight,
                     to: :on_air,
-                    success: :notify_current_status
+                    success: :notify_current_status_and_store_event
       end
     end
 
     private
 
-    def notify_current_status
+    def notify_current_status_and_store_event
+      events.create!(type: state)
+
       NotifierService.notify_dispatchers(self)
     end
   end
