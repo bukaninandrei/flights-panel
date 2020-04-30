@@ -2,7 +2,7 @@
 
 Configus.build Rails.env do
   env :production do
-    flight_time 2.seconds
+    flight_time 10.seconds
   end
 
   env :development, parent: :production
